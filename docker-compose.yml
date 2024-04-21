@@ -8,6 +8,8 @@ services:
       - 8000:5000
     depends_on:
       - mysql
+    networks:
+      - todo-lan
   mysql:
     image: mysql:8.3.0
     ports:
@@ -18,5 +20,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: todo_app
+    networks:
+      - todo-lan
+
 volumes:
   db_data:
+
+networks:
+  todo-lan:
+    driver: bridge
